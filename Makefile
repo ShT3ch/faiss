@@ -7,7 +7,7 @@
 .SUFFIXES: .cpp .o
 
 
-MAKEFILE_INC=makefile.inc
+MAKEFILE_INC=example_makefiles/makefile.inc.Linux
 
 -include $(MAKEFILE_INC)
 

@@ -8,6 +8,12 @@
 # -*- makefile -*-
 # tested on CentOS 7, Ubuntu 16 and Ubuntu 14, see below to adjust flags to distribution.
 
+#Easy installation: 
+#  conda create --name faiss python=3.6 nomkl numpy
+#  source activate faiss
+#  Now you have blas and connected with it numpy libs, continue with make and etc described by original installation guide
+
+CONDA_PREFIX?=/opt/conda/envs/faiss/
 
 CC=g++
 
@@ -66,11 +72,11 @@ FAISSSHAREDFLAGS=-shared
 BLASCFLAGS=-DFINTEGER=int
 
 # This is for Centos:
-BLASLDFLAGS?=/usr/lib64/libopenblas.so.0
+# BLASLDFLAGS?=/usr/lib64/libopenblas.so.0
 
 # for Ubuntu 16:
 # sudo apt-get install libopenblas-dev python-numpy python-dev
-# BLASLDFLAGS?=/usr/lib/libopenblas.so.0
+BLASLDFLAGS?=${CONDA_PREFIX}/lib/libopenblas.so.0
 
 # for Ubuntu 14:
 # sudo apt-get install libopenblas-dev liblapack3 python-numpy python-dev
@@ -115,7 +121,7 @@ SWIGEXEC=swig
 # python3 -c "import numpy ; print(numpy.get_include())"
 #
 
-PYTHONCFLAGS=-I/usr/include/python2.7/ -I/usr/lib64/python2.7/site-packages/numpy/core/include/
+PYTHONCFLAGS?=-I${CONDA_PREFIX}/include/python3.6m/ -I${CONDA_PREFIX}/lib/python3.6/site-packages/numpy/core/include/
 
 
 ###########################################################################
