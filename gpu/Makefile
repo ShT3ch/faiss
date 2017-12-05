@@ -6,11 +6,7 @@
 
 .SUFFIXES: .cpp .o .cu
 
-include ../makefile.inc
-
-
-
-
+include ../example_makefiles/makefile.inc.Linux
 
 
 LIBNAME=libgpufaiss
